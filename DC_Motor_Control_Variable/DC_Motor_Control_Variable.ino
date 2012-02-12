@@ -1,18 +1,11 @@
-// this enables/disables operation
-int enablePin = 2;
-
-// motor logic pins control the motor
+int enablePin = 2; // this enables/disables operation
 int motorLogic1 = 3;
 int motorLogic2 = 5;
-
-// input potentiometer
-int controlPin = A0;
-
-// output led
-int ledPin = 13;
+int controlPin = A0; // potentiometer
+int ledPin = 13; // feedback LED
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(9600); // Serial port used for debugging
   pinMode(enablePin, OUTPUT);
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
@@ -22,7 +15,6 @@ void loop() {
   // vlue is between 0 and 1023
   int inputValue = analogRead(controlPin);
   int pwmValue = 0;
-  //Serial.println(inputValue);
 
   // 0-412 GO DOWN
   if(inputValue < 413) {
@@ -49,18 +41,4 @@ void loop() {
     analogWrite(motorLogic1, 0);
     analogWrite(motorLogic2, pwmValue);
   }
-  
-  
-//  analogWrite(motorLogic1, 255);
-//  analogWrite(motorLogic2, 0);
-//  delay(10000);
-//  analogWrite(motorLogic1, 255);
-//  analogWrite(motorLogic2, 255);
-//  delay(2000);
-//  analogWrite(motorLogic1, 0);
-//  analogWrite(motorLogic2, 255);
-//  delay(10000);
-//  analogWrite(motorLogic1, 0);
-//  analogWrite(motorLogic2, 0);
-//  delay(2000);
 }
